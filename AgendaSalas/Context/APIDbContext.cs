@@ -10,10 +10,13 @@ namespace AgendaSalas.Context
         {
 
         }
-        
+
         public DbSet<Cliente> Cliente { get; set; }
 
         public DbSet<Endereco> Endereco { get; set; }
+
         public DbSet<Servico> Servico { get; set; }
+
+        public DbSet<Equipamento> Equipamento { get; set; }
     }
 }
