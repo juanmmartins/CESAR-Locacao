@@ -27,7 +27,6 @@ O sistema deve ser capaz de:
 
 - Cadastrar as salas e os horários disponíveis para a sua utilização. Possibilidade de
 cadastras fotos da sala.
-- See HTML in the right
 - Cadastrar os clientes interessados.
 - Cadastrar os equipamentos que podem ou não ser utilizados na sala.
 -  Cadastrar os recursos que podem ser colocados ou não na sala no momento da
