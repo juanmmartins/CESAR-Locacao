@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
 
 namespace AgendaSalas.Models
 {
     public class Servico
     {
-        [Key] 
+        [Key]
+        [JsonIgnore]
         public int ServicoID { get; set; }
 
         [Required(ErrorMessage = "Atenção! O campo Descrição é obrigatório.", AllowEmptyStrings = false)]

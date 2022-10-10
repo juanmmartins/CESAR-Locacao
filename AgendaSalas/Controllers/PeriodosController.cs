@@ -12,47 +12,47 @@ namespace AgendaSalas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EquipamentosController : ControllerBase
+    public class PeriodosController : ControllerBase
     {
         private readonly APIDbContext _context;
 
-        public EquipamentosController(APIDbContext context)
+        public PeriodosController(APIDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Equipamentos
+        // GET: api/Periodos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Equipamento>>> GetEquipamento()
+        public async Task<ActionResult<IEnumerable<Periodo>>> GetPeriodo()
         {
-            return await _context.Equipamento.ToListAsync();
+            return await _context.Periodo.ToListAsync();
         }
 
-        // GET: api/Equipamentos/5
+        // GET: api/Periodos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Equipamento>> GetEquipamento(int id)
+        public async Task<ActionResult<Periodo>> GetPeriodo(int id)
         {
-            var equipamento = await _context.Equipamento.FindAsync(id);
+            var periodo = await _context.Periodo.FindAsync(id);
 
-            if (equipamento == null)
+            if (periodo == null)
             {
                 return NotFound();
             }
 
-            return equipamento;
+            return periodo;
         }
 
-        // PUT: api/Equipamentos/5
+        // PUT: api/Periodos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEquipamento(int id, Equipamento equipamento)
+        public async Task<IActionResult> PutPeriodo(int id, Periodo periodo)
         {
-            if (id != equipamento.EquipamentoId)
+            if (id != periodo.PeriodoId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(equipamento).State = EntityState.Modified;
+            _context.Entry(periodo).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace AgendaSalas.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EquipamentoExists(id))
+                if (!PeriodoExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace AgendaSalas.Controllers
             return NoContent();
         }
 
-        // POST: api/Equipamentos
+        // POST: api/Periodos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Equipamento>> PostEquipamento(Equipamento equipamento)
+        public async Task<ActionResult<Periodo>> PostPeriodo(Periodo periodo)
         {
-            _context.Equipamento.Add(equipamento);
+            _context.Periodo.Add(periodo);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEquipamento", new { id = equipamento.EquipamentoId }, equipamento);
+            return CreatedAtAction("GetPeriodo", new { id = periodo.PeriodoId }, periodo);
         }
 
-        // DELETE: api/Equipamentos/5
+        // DELETE: api/Periodos/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEquipamento(int id)
+        public async Task<IActionResult> DeletePeriodo(int id)
         {
-            var equipamento = await _context.Equipamento.FindAsync(id);
-            if (equipamento == null)
+            var periodo = await _context.Periodo.FindAsync(id);
+            if (periodo == null)
             {
                 return NotFound();
             }
 
-            _context.Equipamento.Remove(equipamento);
+            _context.Periodo.Remove(periodo);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool EquipamentoExists(int id)
+        private bool PeriodoExists(int id)
         {
-            return _context.Equipamento.Any(e => e.EquipamentoId == id);
+            return _context.Periodo.Any(e => e.PeriodoId == id);
         }
     }
 }

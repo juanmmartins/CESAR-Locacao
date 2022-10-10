@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -42,15 +43,52 @@ namespace AgendaSalas.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Equipamento",
+                name: "Periodo",
                 columns: table => new
                 {
-                    EquipamentoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                    PeriodoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    diaSemana = table.Column<int>(type: "int", nullable: false),
+                    Inicio = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Fim = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Equipamento", x => x.EquipamentoId);
+                    table.PrimaryKey("PK_Periodo", x => x.PeriodoId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reserva",
+                columns: table => new
+                {
+                    ReservaId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClienteId = table.Column<int>(type: "int", nullable: false),
+                    SalaId = table.Column<int>(type: "int", nullable: false),
+                    ServicoID = table.Column<int>(type: "int", nullable: false),
+                    PeriodoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reserva", x => x.ReservaId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sala",
+                columns: table => new
+                {
+                    SalaId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Identificacao = table.Column<string>(type: "nvarchar(240)", maxLength: 240, nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MedidaLado1EmMetros = table.Column<int>(type: "int", nullable: false),
+                    Medidalado2EmMetros = table.Column<int>(type: "int", nullable: false),
+                    NumeroMaximoDePessoas = table.Column<int>(type: "int", nullable: false),
+                    EnderecoId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sala", x => x.SalaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,7 +115,13 @@ namespace AgendaSalas.Migrations
                 name: "Endereco");
 
             migrationBuilder.DropTable(
-                name: "Equipamento");
+                name: "Periodo");
+
+            migrationBuilder.DropTable(
+                name: "Reserva");
+
+            migrationBuilder.DropTable(
+                name: "Sala");
 
             migrationBuilder.DropTable(
                 name: "Servico");
