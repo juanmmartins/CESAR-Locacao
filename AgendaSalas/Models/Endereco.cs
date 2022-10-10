@@ -6,11 +6,12 @@ namespace AgendaSalas.Models
     public class Endereco
     {
         [Key]
-        public int EnderecoId { get; set; }        
+        [JsonIgnore]
+        public int EnderecoId { get; set; }
 
         [Required(ErrorMessage = "Atenção! O campo Logradouro é obrigatório.", AllowEmptyStrings = false)]
         public string Logradouro { get; set; }
-        
+
         [Required(ErrorMessage = "Atenção! O campo Bairro é obrigatório.", AllowEmptyStrings = false)]
         public string Bairro { get; set; }
 
@@ -20,10 +21,10 @@ namespace AgendaSalas.Models
 
         [Required(ErrorMessage = "Atenção! O campo Complemento é obrigatório.", AllowEmptyStrings = false)]
         public string Complemento { get; set; }
-
-        [JsonIgnore]
-        public ICollection<Sala>? Sala { get; set; }
-
+        /*
+                [JsonIgnore]
+                public ICollection<Sala>? Sala { get; set; }
+        */
         public override string ToString()
         {
             return "Logradouro: " + Logradouro + " \nBairro: " + Bairro + " \nNumero: " + Numero + " \nComplemento: " + Complemento;
